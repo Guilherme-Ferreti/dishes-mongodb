@@ -20,7 +20,7 @@ class DishController extends Controller
     public function store(Request $request)
     {
         $attributes = $request->validate([
-            'name'      => ['required', 'string', 'max:255'],
+            'name'      => ['required', 'string', 'max:255', 'unique:dishes'],
             'price'     => ['required', 'numeric', 'min:0.01'],
             'country'   => ['required', 'string', 'max:255'],
         ]);
