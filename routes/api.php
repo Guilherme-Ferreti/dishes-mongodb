@@ -19,4 +19,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::delete('/dishes/{dish}/force', [DishController::class, 'forceDelete'])->withTrashed();
 Route::apiResource('dishes', DishController::class);
