@@ -20,12 +20,16 @@ class DishController extends Controller
     public function store(Request $request)
     {
         $attributes = $request->validate([
-            'name'      => ['required', 'string', 'max:255', 'unique:dishes'],
-            'price'     => ['required', 'numeric', 'min:0.01'],
-            'country'   => ['required', 'string', 'max:255'],
+            'name'          => ['required', 'string', 'max:255', 'unique:dishes'],
+            'price'         => ['required', 'numeric', 'min:0.01'],
+            'country_id'    => ['required', 'string', 'exists:countries,_id'],
         ]);
 
-        return Dish::create($attributes);
+        $dish = Dish::create($attributes);
+
+        $dish->load('country');
+
+        return $dish;
     }
 
     public function update(Request $request, Dish $dish)

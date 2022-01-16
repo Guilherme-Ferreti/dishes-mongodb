@@ -13,10 +13,15 @@ class Dish extends Model
     protected $fillable = [
         'name',
         'price',
-        'country',
+        'country_id',
     ];
 
     protected $casts = [
         'price' => 'float',
     ];
+
+    public function country()
+    {
+        return $this->belongsTo(Country::class);
+    }
 }
