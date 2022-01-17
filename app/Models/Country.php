@@ -8,4 +8,9 @@ use Jenssegers\Mongodb\Eloquent\Model;
 class Country extends Model
 {
     use HasFactory;
+
+    public function dishes()
+    {
+        return $this->hasMany(Dish::class);
+    }
 }

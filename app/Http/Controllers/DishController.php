@@ -2,14 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\DishResource;
 use App\Models\Dish;
 use Illuminate\Http\Request;
 
 class DishController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        return Dish::all();
+        $dishes = Dish::with('country')
+            ->when($request->country, fn ($query) => 
+                $query->whereHas('country', fn ($query) => $query->where('name', $request->country))
+            )
+            ->get();
+
+        return DishResource::collection($dishes);
     }
 
     public function show(Dish $dish)

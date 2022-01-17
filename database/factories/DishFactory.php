@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Country;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class DishFactory extends Factory
@@ -16,7 +17,7 @@ class DishFactory extends Factory
         return [
             'name' => $this->faker->word(),
             'price' => $this->faker->numberBetween(1, 250),
-            'country' => $this->faker->country(),
+            'country_id' => Country::all('id')->random()->id,
         ];
     }
 }
