@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\Chef;
+use App\Models\Dish;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -15,7 +17,6 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(CountrySeeder::class);
         
-        \App\Models\User::factory(10)->create();
-        \App\Models\Dish::factory(10)->create();
+        Dish::factory(10)->create()->each(fn ($dish) => $dish->chefs()->attach(Chef::factory(2)->create()));
     }
 }

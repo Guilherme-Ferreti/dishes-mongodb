@@ -24,4 +24,9 @@ class Dish extends Model
     {
         return $this->belongsTo(Country::class);
     }
+
+    public function chefs()
+    {
+        return $this->belongsToMany(Chef::class);
+    }
 }

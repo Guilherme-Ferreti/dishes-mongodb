@@ -5,7 +5,7 @@ namespace Database\Factories;
 use App\Models\Country;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class DishFactory extends Factory
+class ChefFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -15,8 +15,7 @@ class DishFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->unique()->word(),
-            'price' => $this->faker->numberBetween(1, 250),
+            'name' => $this->faker->name(),
             'country_id' => Country::all('id')->random()->id,
         ];
     }

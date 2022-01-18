@@ -10,7 +10,8 @@ class DishController extends Controller
 {
     public function index(Request $request)
     {
-        $dishes = Dish::with('country')
+        $dishes = Dish::query()
+            ->with('country', 'chefs.country')
             ->when($request->country, fn ($query) => 
                 $query->whereHas('country', fn ($query) => $query->where('name', $request->country))
             )
