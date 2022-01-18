@@ -22,6 +22,11 @@ class DishResource extends JsonResource
                 'name'      => $chef->name,
                 'country'   => $chef->country->name,
             ])),
+            'ingredients' => $this->ingredients->map(fn ($ingredient) => [
+                'id'        => $ingredient->id,
+                'name'      => $ingredient->name,
+                'optional'  => $ingredient->optional,
+            ]),
         ];
     }
 }

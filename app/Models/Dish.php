@@ -29,4 +29,9 @@ class Dish extends Model
     {
         return $this->belongsToMany(Chef::class);
     }
+
+    public function ingredients()
+    {
+        return $this->embedsMany(Ingredient::class);
+    }
 }
