@@ -15,7 +15,8 @@ class DishFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->unique()->word(),
+            // 'name' => $this->faker->unique()->words(),
+            'name' => \Illuminate\Support\Str::random(),
             'price' => $this->faker->numberBetween(1, 250),
             'country_id' => Country::all('id')->random()->id,
         ];
